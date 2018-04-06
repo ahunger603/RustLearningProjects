@@ -1,0 +1,5 @@
+[package]
+
+name = "gcd"
+version = "0.0.1"
+authors = ["Ashton Hunger"]
