@@ -9,9 +9,7 @@ enum MessageType {
 #[derive(PartialEq)]
 enum Punctuation {
     None = 0,
-    Statement = 1,
-    Exclaimation = 2,
-    Question = 3
+    Question = 1
 }
 
 pub fn reply(message: &str) -> &str {
@@ -24,8 +22,6 @@ pub fn reply(message: &str) -> &str {
                 }
             },
             ' ' | '\t' | '\r' | '\n' => {},
-            '.' => message_interpretation.1 = Punctuation::Statement,
-            '!' => message_interpretation.1 = Punctuation::Exclaimation,
             '?' => message_interpretation.1 = Punctuation::Question,
             'a' ... 'z' => message_interpretation = (MessageType::Normal, Punctuation::None),
             _ => {
