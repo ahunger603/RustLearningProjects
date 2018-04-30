@@ -62,30 +62,26 @@ fn get_tens_value_string(n: u64) -> String {
         });
     }
     else {
-        if n >= 10 {
-            let tens = n / 10;
-            let remainder = n % 10;
-            tens_string.push_str(match tens {
-                1 => "ten",
-                2 => "twenty",
-                3 => "thirty",
-                4 => "forty",
-                5 => "fifty",
-                6 => "sixty",
-                7 => "seventy",
-                8 => "eighty", 
-                9 => "ninty",
-                _ => panic!()
-            });
-            if remainder > 0 {
+        let tens = n / 10;
+        let remainder = n % 10;
+        tens_string.push_str(match tens {
+            0 => "",
+            1 => "ten",
+            2 => "twenty",
+            3 => "thirty",
+            4 => "forty",
+            5 => "fifty",
+            6 => "sixty",
+            7 => "seventy",
+            8 => "eighty", 
+            9 => "ninty",
+            _ => panic!()
+        });
+        if remainder > 0 {
+            if tens > 0 {
                 tens_string.push('-');
-                tens_string.push_str(get_decimal_string(remainder));
             }
-        }
-        else {
-            if n > 0 {
-                tens_string.push_str(get_decimal_string(n));
-            }
+            tens_string.push_str(get_decimal_string(remainder));
         }
     }
     tens_string
