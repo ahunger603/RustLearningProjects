@@ -113,29 +113,29 @@ fn get_chunk_value_string(n: u64) -> String {
 }
 
 pub fn encode(n: u64) -> String {
-    let mut say = String::new();
+    let mut encoded = String::new();
     let chunks = get_num_chunks(n);
     let chunks_len = chunks.len();
     if chunks_len == 1 && chunks[0] == 0 {
-        say.push_str(get_decimal_string(0));
+        encoded.push_str(get_decimal_string(0));
     }
     else {
         for (i, value) in chunks.into_iter().rev().enumerate() {
             let order = chunks_len - (i + 1);
             if value > 0 {
                 if i > 0 {
-                    say.push(' ');
+                    encoded.push(' ');
                 }
-                say.extend(get_chunk_value_string(value).chars());
+                encoded.extend(get_chunk_value_string(value).chars());
                 match get_chunk_order_string(order as u64) {
                     None => (),
                     Some(order_string) => {
-                        say.push(' ');
-                        say.push_str(order_string);
+                        encoded.push(' ');
+                        encoded.push_str(order_string);
                     }
                 }
             }
         }
     }
-    say
+    encoded
 }
